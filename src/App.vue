@@ -11,25 +11,35 @@ const busqueda = ref('');
 const cargando = ref(true);
 const pestanaActiva = ref('solicitudes');
 const mostrarModal = ref(false);
+const errorCarga = ref(false);
 
-const cargarDatos = async () => {
+const cargarDatos = async (intentos = 1) => {
   try {
-    cargando.value = true;
+    if (intentos === 1) cargando.value = true;
+    errorCarga.value = false;
     const response = await api.getSolicitudes();
     solicitudes.value = response.data;
+    
   } catch (e) { 
     console.error("Error Posgres:", e); 
+    if (intentos < 2) {
+      return cargarDatos(intentos + 1); 
+    }
+    errorCarga.value = true;
   } finally { 
     cargando.value = false; 
   }
 };
 
-const cargarLogs = async () => {
+const cargarLogs = async (intentos = 1) => {
   try {
     const response = await api.getAuditoria();
     logsAuditoria.value = response.data;
   } catch (e) { 
     console.error("Error Mongo:", e); 
+    if (intentos < 2) {
+      return cargarLogs(intentos + 1);
+    }
   }
 };
 
