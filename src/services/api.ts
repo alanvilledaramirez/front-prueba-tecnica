@@ -25,6 +25,11 @@ export interface AuditLog {
 
 const api = axios.create({
   baseURL: 'https://backend-prueba-tecnica-7cu9.onrender.com/api/v1',
+  headers: {
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma': 'no-cache',
+    'Expires': '0'
+  }
 });
 
 export default {
