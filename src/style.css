@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-gradient-to-br from-[#0A0A1F] to-[#0A0A1F] min-h-screen;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  display: block;
+  color: #E0E0FF;
+}
+
+.custom-scrollbar::-webkit-scrollbar { width: 8px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #8B5CF6; border-radius: 10px; border: 2px solid transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #C084FC; }
